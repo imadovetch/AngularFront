@@ -6,7 +6,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://your-api-url.com/api'; // Replace with your actual API URL
+  private apiUrl = 'http://localhost/start_war/AddUser'; 
 
   private httpOptions = {
     headers: new HttpHeaders({

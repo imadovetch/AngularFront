@@ -15,8 +15,9 @@ export class SignupComponent {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], // Added pattern validation for phone number
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], // Updated to match a 10-digit phone number
       age: ['', [Validators.required]],
+      address: ['', [Validators.required]], // Added address field
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
@@ -33,7 +34,17 @@ export class SignupComponent {
       return;
     }
 
-    this.authService.signup(this.signupForm.value).subscribe({
+    // Prepare the payload to match the required structure
+    const userData = {
+      name: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      phoneNumber: this.signupForm.value.phone,
+      adresse: this.signupForm.value.address,
+      age: this.signupForm.value.age
+    };
+
+    this.authService.signup(userData).subscribe({
       next: (res) => {
         console.log('Signup successful!', res);
       },

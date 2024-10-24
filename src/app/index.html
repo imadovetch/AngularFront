@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assurance Automobile</title>
+</head>
+<body>
+    <h1>Submit Assurance Automobile Data</h1>
+
+    <button onclick="submitAssuranceAutomobile()">Submit Assurance Automobile</button>
+
+    <script>
+        function submitAssuranceAutomobile() {
+            // Payload matching the AssuranceAutomobile structure
+            const assuranceAutomobileData = {
+                ageDuConducteur: 35,
+                typeDeVehicule: "SUV",
+                utilisationDuVehicule: "privée",
+                historiqueDeConduite: "Aucun accident, aucune infraction"
+            };
+
+            // Fetch POST request to the server
+            fetch('http://localhost/start_war/addAutomobileAssuration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(assuranceAutomobileData) // Convert JS object to JSON string
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse response JSON if request is successful
+                } else {
+                    throw new Error('Failed to submit assurance data');
+                }
+            })
+            .then(data => {
+                console.log('Response from server:', data); // Log the server's response
+                alert('Assurance data submitted successfully');
+            })
+            .catch(error => {
+                console.error('Error:', error); // Handle any errors
+                alert('An error occurred while submitting assurance data');
+            });
+        }
+    </script>
+</body>
+</html>

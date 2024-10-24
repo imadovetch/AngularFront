@@ -21,12 +21,12 @@
       </div>
     </div>
 
-    <!-- Phone -->
+    <!-- Phone Number -->
     <div>
-      <label for="phone">Phone</label>
-      <input id="phone" formControlName="phone" type="text" />
+      <label for="phone">Phone Number</label>
+      <input id="phone" formControlName="phone" type="text" /> <!-- Changed to text to allow any format -->
       <div *ngIf="submitted && f['phone'].errors" class="error">
-        <div *ngIf="f['phone'].errors['required']">Phone is required.</div>
+        <div *ngIf="f['phone'].errors['required']">Phone Number is required.</div>
         <div *ngIf="f['phone'].errors['pattern']">Invalid phone number. Must be 10 digits.</div>
       </div>
     </div>
@@ -34,9 +34,18 @@
     <!-- Age -->
     <div>
       <label for="age">Age</label>
-      <input id="age" formControlName="age" type="text" />
+      <input id="age" formControlName="age" type="number" />
       <div *ngIf="submitted && f['age'].errors" class="error">
         <div *ngIf="f['age'].errors['required']">Age is required.</div>
+      </div>
+    </div>
+
+    <!-- Address -->
+    <div>
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" />
+      <div *ngIf="submitted && f['address'].errors" class="error">
+        <div *ngIf="f['address'].errors['required']">Address is required.</div>
       </div>
     </div>
 
